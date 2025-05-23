@@ -32,28 +32,33 @@ function menucelular(){
 
 // Registro do Service Worker
 let deferredPrompt;
+const installButton = document.getElementById('installButton');
 
+// Esconde o botão inicialmente
+installButton.style.display = 'none';
+
+// Evento para mostrar o botão quando a instalação estiver disponível
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    const installButton = document.getElementById('installButton');
-    if (installButton) {
-        installButton.style.display = 'block';
-        installButton.addEventListener('click', () => {
-            installButton.style.display = 'none';
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('Usuário aceitou instalar');
-                } else {
-                    console.log('Usuário recusou instalar');
-                }
-                deferredPrompt = null;
-            });
-        });
-    }
+    installButton.style.display = 'block';
 });
 
+// Evento para o clique do botão (adicionado só uma vez)
+installButton.addEventListener('click', async () => {
+    installButton.style.display = 'none';
+    if (!deferredPrompt) {
+        return;
+    }
+    deferredPrompt.prompt();
+    const choiceResult = await deferredPrompt.userChoice;
+    if (choiceResult.outcome === 'accepted') {
+        console.log('Usuário aceitou instalar');
+    } else {
+        console.log('Usuário recusou instalar');
+    }
+    deferredPrompt = null;
+});
 
 
 
