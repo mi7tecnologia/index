@@ -1,19 +1,19 @@
 {
-  "name": "Site Teste",
-  "short_name": "Teste",
-  "start_url": ".",
+  "name": "MI7 Tecnologia",
+  "short_name": "MI7",
+  "start_url": "/index/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
-  "description": "Meu site teste como PWA",
+  "description": "Site da MI7 Tecnologia como PWA",
   "icons": [
     {
-      "src": "assets/icons/icon-192.png",
+      "src": "/index/assets/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "assets/icons/icon-512.png",
+      "src": "/index/assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
