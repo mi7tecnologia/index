@@ -16,40 +16,50 @@ document.addEventListener('DOMContentLoaded', function() {
   const closeModal = document.getElementById('closeModal');
   const botaoModal = document.getElementById('botaoModal');
   const installButton = document.getElementById('installButton');
+  const botaoFlutuante = document.getElementById('botaoFlutuante'); // ⬅️ Botão flutuante
 
   let deferredPrompt = null;
 
-  // 👉 Abre o modal ao carregar (exibe como flex para centralizar)
-  modal.style.display = 'flex';
+  // 👉 Função para abrir o modal
+  function abrirModal() {
+    modal.style.display = 'flex';
+    setTimeout(() => {
+      if (modal.style.display === 'flex') {
+        modal.style.display = 'none';
+      }
+    }, 5000);
+  }
 
-  // 👉 Fecha o modal automaticamente após 5 segundos
-  setTimeout(() => {
-    if (modal.style.display === 'flex') {
-      modal.style.display = 'none';
-    }
-  }, 2000);
+  // 👉 Checar se já mostrou nos últimos 3 dias
+  const ultimoModal = localStorage.getItem('ultimoModal');
+  const agora = new Date().getTime();
+  const tresDias = 3 * 24 * 60 * 60 * 1000;
 
-  // 👉 Fechar modal clicando no X
+  if (!ultimoModal || agora - ultimoModal > tresDias) {
+    abrirModal();
+    localStorage.setItem('ultimoModal', agora);
+  }
+
+  // 👉 Fechar manual (X ou botão)
   closeModal.onclick = () => {
     modal.style.display = 'none';
   };
 
-  // 👉 Fechar modal clicando no botão "Ok, obrigado!"
   botaoModal.onclick = () => {
     modal.style.display = 'none';
   };
 
-  // 👉 Evento do PWA: captura o evento antes da instalação
+  // 👉 Evento do PWA
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
 
-    // Mostrar o botão de instalar dentro do modal
-    installButton.style.display = 'inline-block';
+    installButton.style.display = 'inline-block'; // Botão dentro do modal
+    botaoFlutuante.style.display = 'block';       // Botão flutuante
   });
 
-  // 👉 Clique no botão instalar
-  installButton.addEventListener('click', () => {
+  // 👉 Clique no botão de instalar (modal ou flutuante)
+  function instalarApp() {
     if (deferredPrompt) {
       deferredPrompt.prompt();
 
@@ -60,17 +70,17 @@ document.addEventListener('DOMContentLoaded', function() {
           console.log('❌ Usuário recusou instalar');
         }
         deferredPrompt = null;
-
-        // Esconder botão após a escolha do usuário
         installButton.style.display = 'none';
-
-        // Opcional: fecha modal depois da instalação
+        botaoFlutuante.style.display = 'none';
         modal.style.display = 'none';
       });
     }
-  });
+  }
 
-  // 👉 Menu hambúrguer (deixe seu código como está)
+  installButton.addEventListener('click', instalarApp);
+  botaoFlutuante.addEventListener('click', instalarApp);
+
+  // 👉 Menu hambúrguer (mantido igual)
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.querySelector('.menu');
 
@@ -82,8 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
     menu.classList.remove('menu-ativo');
   });
 });
-
-
 
 
 
