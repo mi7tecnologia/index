@@ -972,17 +972,18 @@ hr {
 }
 /**************************************************************/
 
+
+
 #installButton {
   position: fixed;
-  top: 80px;      /* distância do topo */
-  left: 20px;     /* distância da esquerda */
-  width: 40px;    /* tamanho fixo do ícone */
+  top: 110px;      /* mais para baixo do que antes */
+  left: 20px;
+  width: 40px;
   height: 40px;
-  background: rgba(0, 123, 255, 0.8);
+  background: transparent;  /* fundo transparente */
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
-  backdrop-filter: blur(10px);
+  box-shadow: none;         /* sem sombra para ficar clean */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -994,9 +995,9 @@ hr {
 }
 
 #installButton:hover {
-  background: rgba(0, 123, 255, 1);
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.5);
+  /* opcional: pode colocar uma leve sombra ao passar o mouse se quiser */
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
 }
 
 #installButton:active {
@@ -1004,8 +1005,8 @@ hr {
 }
 
 #installButton .icon-img {
-  width: 24px;    /* tamanho do ícone dentro do botão */
-  height: 24px;
+  width: 32px;    /* deixa o ícone um pouco maior */
+  height: 32px;
   object-fit: contain;
 }
 
@@ -1022,14 +1023,14 @@ hr {
 /* Ajuste para telas pequenas */
 @media (max-width: 600px) {
   #installButton {
-    top: 60px;
+    top: 90px;
     left: 10px;
     width: 36px;
     height: 36px;
   }
 
   #installButton .icon-img {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
   }
 }
