@@ -142,78 +142,83 @@ body {
 /* MENU MOBILE VERTICAL -------------------*/
 @media (min-width: 10px) and (max-width: 800px) {
   .menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 250px;
-    height: 100vh;
-     background: linear-gradient( to right, #202020, #233f17,#202020); /* Fundo gradiente comentado */
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    justify-content: start; /* fica no topo */
-    padding: 40px 20px;
-    gap: 15px;
-    z-index: 1001;
-    transition: right 0.3s ease;
+    position: fixed; /* Deixa o menu fixo na tela */
+    top: 0;          /* Posiciona no topo */
+    right: -100%;    /* Esconde o menu fora da tela, à direita */
+    width: 175px;    /* Define a largura do menu */
+    height: 85vh;   /* Altura total da viewport (tela) */
+    border-top-left-radius: 45px;   /* canto superior esquerdo */
+    border-bottom-left-radius: 45px; /* canto inferior esquerdo */
+    background: linear-gradient(to right, rgba(32, 32, 32, 0.8), rgba(35, 63, 23, 0.8), rgba(32, 32, 32, 0.8)); /* Fundo gradiente com transparência */
+    backdrop-filter: blur(5px); /* Blur no fundo atrás do menu (efeito vidro fosco) */
+    display: flex;            /* Usa flexbox para organizar itens */
+    flex-direction: column;   /* Itens organizados em coluna */
+    justify-content: start;   /* Itens ficam no topo */
+    padding: 40px 20px;       /* Espaçamento interno do menu */
+    gap: 15px;                /* Espaçamento entre os links */
+    z-index: 1001;            /* Fica acima de outros elementos */
+    transition: right 0.2s ease; /* Animação suave para abrir e fechar menu */
   }
 
   .menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    width: 100%;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: color 0.3s;
+    color: white;             /* Cor do texto dos links */
+    text-decoration: none;    /* Remove sublinhado */
+    font-size: 18px;          /* Tamanho da fonte dos links */
+    width: 100%;              /* Ocupa toda largura do menu */
+    padding: 10px 0;          /* Espaçamento vertical nos links */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha fina separadora */
+    transition: color 0.3s;   /* Transição suave na cor do texto ao passar o mouse */
   }
 
   .menu a:hover {
-    color: #1abc9c;
+    color: #1abc9c;           /* Cor dos links quando o mouse passa por cima */
   }
 
   .menu.menu-ativo {
-    right: 0;
+    right: 0;                 /* Quando o menu está ativo, fica visível (entra na tela) */
   }
 
   .menu-toggle {
-    display: flex;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 22px;
-    z-index: 1000;
+    display: flex;            /* Exibe o botão de abrir menu */
+    cursor: pointer;          /* Cursor muda para indicar que pode clicar */
+    flex-direction: column;   /* Os spans dentro ficam empilhados verticalmente (hamburger) */
+    justify-content: space-between; /* Espaçamento entre as linhas do hambúrguer */
+    width: 30px;              /* Largura do botão */
+    height: 22px;             /* Altura do botão */
+    z-index: 1000;            /* Fica acima da maioria dos elementos, mas abaixo do menu */
   }
 
   .menu-toggle span {
-    display: block;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
+    display: block;           /* Cada linha do hambúrguer é um bloco */
+    height: 3px;              /* Espessura da linha */
+    background-color: white;  /* Cor branca das linhas do hambúrguer */
+    border-radius: 2px;       /* Bordas arredondadas das linhas */
   }
-}
+}   
+
+
 
 
 @media (min-width: 10px) and (max-width: 800px) {
   .overlay {
-    position: fixed;
+    position: fixed;          /* Fixa a camada sobre toda tela */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+    width: 100%;             /* Ocupa toda largura da tela */
+    height: 100vh;           /* Ocupa toda altura da tela */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo preto semi-transparente */
+    z-index: 1000;           /* Fica abaixo do menu (menu tem z-index 1001) */
+    opacity: 0;              /* Inicialmente invisível */
+    pointer-events: none;    /* Não permite clicar quando invisível */
+    transition: opacity 0.3s ease; /* Transição suave para aparecer/desaparecer */
   }
 
   .overlay.ativo {
-    opacity: 1;
-    pointer-events: all;
+    opacity: 1;              /* Torna o overlay visível */
+    pointer-events: all;     /* Permite clicar para fechar o menu */
   }
 }
+
 
 /*FIM MENU VERTICAL*/
 

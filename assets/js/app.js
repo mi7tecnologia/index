@@ -32,6 +32,19 @@ function menucelular(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+  
+
+
   
 /*****PWA* */
 document.addEventListener('DOMContentLoaded', function() {
@@ -151,7 +164,6 @@ carousel.addEventListener('mouseleave', () => {
     updatePositions();
   }, 2000);
 });
-
 
 
 
