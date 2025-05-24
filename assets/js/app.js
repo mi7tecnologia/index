@@ -56,7 +56,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 
 
-
+/**************************************************************************************** */
 
 
 
@@ -113,4 +113,43 @@ carousel.addEventListener('mouseleave', () => {
 
 
 
+/*********************************************************************************** */
 
+let deferredPrompt;
+const installModal = document.getElementById('installModal');
+const installButton = document.getElementById('installButton');
+const closeButton = document.querySelector('.close-button');
+
+// Escuta o evento de instalação possível
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  
+  // Mostra o modal
+  installModal.style.display = 'block';
+
+  // Se não clicar em nada, fecha depois de 10 segundos
+  setTimeout(() => {
+    installModal.style.display = 'none';
+  }, 10000);
+});
+
+// Botão "Instalar"
+installButton.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      console.log('Usuário aceitou instalar');
+    } else {
+      console.log('Usuário recusou instalar');
+    }
+    deferredPrompt = null;
+    installModal.style.display = 'none';
+  }
+});
+
+// Botão "Fechar" (X)
+closeButton.addEventListener('click', () => {
+  installModal.style.display = 'none';
+});
