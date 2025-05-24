@@ -93,6 +93,21 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// 👉 Botão flutuante
+const botaoFlutuante = document.getElementById('botaoFlutuante');
+
+botaoFlutuante.addEventListener('click', () => {
+  // 🔥 Abre o modal novamente
+  modal.style.display = 'flex';
+
+  // Fecha sozinho após 5 segundos
+  setTimeout(() => {
+    if (modal.style.display === 'flex') {
+      modal.style.display = 'none';
+    }
+  }, 5000);
+});
+
 
 
 
