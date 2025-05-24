@@ -19,33 +19,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let deferredPrompt = null;
 
-  // 👉 Abre o modal ao carregar
+  // 👉 Abre o modal ao carregar (exibe como flex para centralizar)
   modal.style.display = 'flex';
 
-  // 👉 Fecha após 5 segundos automaticamente
+  // 👉 Fecha o modal automaticamente após 5 segundos
   setTimeout(() => {
     if (modal.style.display === 'flex') {
       modal.style.display = 'none';
     }
   }, 5000);
 
-  // 👉 Fechar manualmente (X ou botão)
+  // 👉 Fechar modal clicando no X
   closeModal.onclick = () => {
     modal.style.display = 'none';
   };
 
+  // 👉 Fechar modal clicando no botão "Ok, obrigado!"
   botaoModal.onclick = () => {
     modal.style.display = 'none';
   };
 
-  // 👉 Evento de instalação do PWA
+  // 👉 Evento do PWA: captura o evento antes da instalação
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    installButton.style.display = 'inline-block'; // Mostra o botão de instalar
+
+    // Mostrar o botão de instalar dentro do modal
+    installButton.style.display = 'inline-block';
   });
 
-  // 👉 Clique no botão de instalar
+  // 👉 Clique no botão instalar
   installButton.addEventListener('click', () => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
@@ -57,12 +60,17 @@ document.addEventListener('DOMContentLoaded', function() {
           console.log('❌ Usuário recusou instalar');
         }
         deferredPrompt = null;
-        installButton.style.display = 'none'; // Esconde depois de clicar
+
+        // Esconder botão após a escolha do usuário
+        installButton.style.display = 'none';
+
+        // Opcional: fecha modal depois da instalação
+        modal.style.display = 'none';
       });
     }
   });
 
-  // 👉 Menu hambúrguer
+  // 👉 Menu hambúrguer (deixe seu código como está)
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.querySelector('.menu');
 
@@ -73,8 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', () => {
     menu.classList.remove('menu-ativo');
   });
-
 });
+
 
 
 
