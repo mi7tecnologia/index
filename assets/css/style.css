@@ -146,7 +146,7 @@ body {
     top: 0;          /* Posiciona no topo */
     right: -100%;    /* Esconde o menu fora da tela, à direita */
     width: 175px;    /* Define a largura do menu */
-    height: 85vh;   /* Altura total da viewport (tela) */
+    height: 100vh;   /* Altura total da viewport (tela) */
     border-top-left-radius: 45px;   /* canto superior esquerdo */
     border-bottom-left-radius: 45px; /* canto inferior esquerdo */
     background: linear-gradient(to right, rgba(32, 32, 32, 0.8), rgba(35, 63, 23, 0.8), rgba(32, 32, 32, 0.8)); /* Fundo gradiente com transparência */
