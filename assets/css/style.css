@@ -972,53 +972,64 @@ hr {
 }
 /**************************************************************/
 
-
 #installButton {
-  position: fixed; /* fixa no viewport */
-  top: 20px;       /* distancia do topo */
-  left: 20px;      /* distancia da esquerda */
-  padding: 12px 24px;
+  position: fixed;
+  top: 80px;      /* distância do topo */
+  left: 20px;     /* distância da esquerda */
+  width: 40px;    /* tamanho fixo do ícone */
+  height: 40px;
   background: rgba(0, 123, 255, 0.8);
-  color: white;
-  border: none;
-  border-radius: 30px;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  display: flex; /* para alinhar texto e ícone */
+  display: flex;
   align-items: center;
-  gap: 8px; /* espaçamento entre ícone e texto */
-
+  justify-content: center;
   animation: flutuar 3s ease-in-out infinite;
-  z-index: 9999; /* para ficar por cima */
+  z-index: 1050;
+  border: none;
+  padding: 0;
+  transition: all 0.3s ease;
 }
 
 #installButton:hover {
   background: rgba(0, 123, 255, 1);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 123, 255, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.5);
 }
 
 #installButton:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 #installButton .icon-img {
-  width: 24px;
+  width: 24px;    /* tamanho do ícone dentro do botão */
   height: 24px;
   object-fit: contain;
 }
 
-/* Animação suave subindo e descendo */
+/* Animação */
 @keyframes flutuar {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
+/* Ajuste para telas pequenas */
+@media (max-width: 600px) {
+  #installButton {
+    top: 60px;
+    left: 10px;
+    width: 36px;
+    height: 36px;
+  }
+
+  #installButton .icon-img {
+    width: 20px;
+    height: 20px;
+  }
+}
