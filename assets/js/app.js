@@ -31,28 +31,7 @@ function menucelular(){
 
 
 // Registro do Service Worker
-let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const installButton = document.getElementById('installButton');
-    if (installButton) {
-        installButton.style.display = 'block';
-        installButton.addEventListener('click', () => {
-            installButton.style.display = 'none';
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('Usuário aceitou instalar');
-                } else {
-                    console.log('Usuário recusou instalar');
-                }
-                deferredPrompt = null;
-            });
-        });
-    }
-});
 
 
 
@@ -120,36 +99,39 @@ const installModal = document.getElementById('installModal');
 const installButton = document.getElementById('installButton');
 const closeButton = document.querySelector('.close-button');
 
-// Escuta o evento de instalação possível
 window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  
-  // Mostra o modal
-  installModal.style.display = 'block';
+    e.preventDefault();
+    deferredPrompt = e;
 
-  // Se não clicar em nada, fecha depois de 10 segundos
-  setTimeout(() => {
-    installModal.style.display = 'none';
-  }, 10000);
+    // Exibe o modal
+    installModal.style.display = 'block';
+
+    // Se o usuário não fizer nada, fecha depois de 10 segundos
+    setTimeout(() => {
+        installModal.style.display = 'none';
+    }, 10000);
 });
 
-// Botão "Instalar"
-installButton.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      console.log('Usuário aceitou instalar');
-    } else {
-      console.log('Usuário recusou instalar');
+// Quando clica no botão "Instalar"
+installButton.addEventListener('click', () => {
+    installModal.style.display = 'none';
+    installButton.style.display = 'none';
+
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('Usuário aceitou instalar');
+            } else {
+                console.log('Usuário recusou instalar');
+            }
+            deferredPrompt = null;
+        });
     }
-    deferredPrompt = null;
-    installModal.style.display = 'none';
-  }
 });
 
-// Botão "Fechar" (X)
+// Quando clica no botão "X" (fechar)
 closeButton.addEventListener('click', () => {
-  installModal.style.display = 'none';
+    installModal.style.display = 'none';
 });
+
