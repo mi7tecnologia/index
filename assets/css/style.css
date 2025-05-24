@@ -974,7 +974,9 @@ hr {
 
 
 #installButton {
-  position: relative;
+  position: fixed; /* fixa no viewport */
+  top: 20px;       /* distancia do topo */
+  left: 20px;      /* distancia da esquerda */
   padding: 12px 24px;
   background: rgba(0, 123, 255, 0.8);
   color: white;
@@ -986,14 +988,37 @@ hr {
   box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  display: flex; /* para alinhar texto e ícone */
+  align-items: center;
+  gap: 8px; /* espaçamento entre ícone e texto */
+
+  animation: flutuar 3s ease-in-out infinite;
+  z-index: 9999; /* para ficar por cima */
 }
 
 #installButton:hover {
   background: rgba(0, 123, 255, 1);
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(0, 123, 255, 0.5);
 }
 
 #installButton:active {
   transform: scale(0.98);
 }
+
+#installButton .icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Animação suave subindo e descendo */
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
