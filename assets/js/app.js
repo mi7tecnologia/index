@@ -10,32 +10,85 @@ function menucelular(){
     }
 }*/
 
-/* EFEIRO MENU AMBURGUINHO */
+document.addEventListener('DOMContentLoaded', function() {
+  // Modal
+  const modal = document.getElementById('modal');
+  const closeModal = document.getElementById('closeModal');
+  const botaoModal = document.getElementById('botaoModal');
+  const installButton = document.getElementById('installButton');
+
+  let deferredPrompt = null;
+
+  // 👉 Abre o modal ao carregar
+  modal.style.display = 'flex';
+
+  // 👉 Fecha após 5 segundos automaticamente
+  setTimeout(() => {
+    if (modal.style.display === 'flex') {
+      modal.style.display = 'none';
+    }
+  }, 5000);
+
+  // 👉 Fechar manualmente (X ou botão)
+  closeModal.onclick = () => {
+    modal.style.display = 'none';
+  };
+
+  botaoModal.onclick = () => {
+    modal.style.display = 'none';
+  };
+
+  // 👉 Evento de instalação do PWA
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installButton.style.display = 'inline-block'; // Mostra o botão de instalar
+  });
+
+  // 👉 Clique no botão de instalar
+  installButton.addEventListener('click', () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('✅ Usuário aceitou instalar');
+        } else {
+          console.log('❌ Usuário recusou instalar');
+        }
+        deferredPrompt = null;
+        installButton.style.display = 'none'; // Esconde depois de clicar
+      });
+    }
+  });
+
+  // 👉 Menu hambúrguer
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.querySelector('.menu');
-  const links = document.querySelectorAll('.menu a');
 
-  // Abre ou fecha no botão
   toggle.addEventListener('click', () => {
     menu.classList.toggle('menu-ativo');
   });
 
-  // Fecha se rolar a página
   window.addEventListener('scroll', () => {
     menu.classList.remove('menu-ativo');
   });
 
-  // ✅ ATENÇÃO: Clicar nos links NÃO fecha automaticamente, 
-  // deixa o navegador fazer a navegação normal
-
-
-
-// Registro do Service Worker
+});
 
 
 
 
-/**************************************************************************************** */
+
+// Abrir o modal automaticamente ao carregar (se desejar)
+// Descomente se quiser o modal na abertura também, além do evento de instalação
+// window.addEventListener('load', () => {
+//     abrirModal();
+// });
+
+
+
+
 
 
 
@@ -92,46 +145,5 @@ carousel.addEventListener('mouseleave', () => {
 
 
 
-/*********************************************************************************** */
 
-let deferredPrompt;
-const installModal = document.getElementById('installModal');
-const installButton = document.getElementById('installButton');
-const closeButton = document.querySelector('.close-button');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    // Exibe o modal
-    installModal.style.display = 'block';
-
-    // Se o usuário não fizer nada, fecha depois de 10 segundos
-    setTimeout(() => {
-        installModal.style.display = 'none';
-    }, 10000);
-});
-
-// Quando clica no botão "Instalar"
-installButton.addEventListener('click', () => {
-    installModal.style.display = 'none';
-    installButton.style.display = 'none';
-
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('Usuário aceitou instalar');
-            } else {
-                console.log('Usuário recusou instalar');
-            }
-            deferredPrompt = null;
-        });
-    }
-});
-
-// Quando clica no botão "X" (fechar)
-closeButton.addEventListener('click', () => {
-    installModal.style.display = 'none';
-});
 
