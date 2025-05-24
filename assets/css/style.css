@@ -974,63 +974,54 @@ hr {
 
 
 
+
+
+
 #installButton {
   position: fixed;
-  top: 110px;      /* mais para baixo do que antes */
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  background: transparent;  /* fundo transparente */
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: none;         /* sem sombra para ficar clean */
+  top: 70px; /* aumenta aqui pra ficar mais pra baixo do topo */
+  left: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  animation: flutuar 3s ease-in-out infinite;
-  z-index: 1050;
+  background: transparent !important;
   border: none;
-  padding: 0;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 6px 8px;
+  z-index: 9999;
+  user-select: none;
+  animation: flutuar 3s ease-in-out infinite;
 }
 
-#installButton:hover {
-  transform: translateY(-3px);
-  /* opcional: pode colocar uma leve sombra ao passar o mouse se quiser */
-  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
-}
-
-#installButton:active {
-  transform: scale(0.95);
+.icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #installButton .icon-img {
-  width: 32px;    /* deixa o ícone um pouco maior */
+  width: 32px;  /* tamanho do ícone */
   height: 32px;
   object-fit: contain;
+  pointer-events: none; /* evita interferir no clique */
 }
 
-/* Animação */
+.install-text {
+  font-size: 10px;
+  color: white;
+  margin-top: 4px;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 0 3px rgba(0,0,0,0.6);
+  pointer-events: none;
+}
+
+/* Animação leve de flutuar pra cima e pra baixo */
 @keyframes flutuar {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(-6px);
-  }
-}
-
-/* Ajuste para telas pequenas */
-@media (max-width: 600px) {
-  #installButton {
-    top: 90px;
-    left: 10px;
-    width: 36px;
-    height: 36px;
-  }
-
-  #installButton .icon-img {
-    width: 28px;
-    height: 28px;
   }
 }
