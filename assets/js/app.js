@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (modal.style.display === 'flex') {
       modal.style.display = 'none';
     }
-  }, 5000);
+  }, 2000);
 
   // 👉 Fechar modal clicando no X
   closeModal.onclick = () => {
