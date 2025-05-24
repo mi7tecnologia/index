@@ -9,7 +9,30 @@ function menucelular(){
         MenuItens.style.maxHeight = "0px";
     }
 }*/
+/* EFEIRO MENU AMBURGUINHO */
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.menu');
+  const links = document.querySelectorAll('.menu a');
 
+  // Abre ou fecha no botão
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('menu-ativo');
+  });
+
+  // Fecha se rolar a página
+  window.addEventListener('scroll', () => {
+    menu.classList.remove('menu-ativo');
+  });
+
+  // ✅ ATENÇÃO: Clicar nos links NÃO fecha automaticamente, 
+  // deixa o navegador fazer a navegação normal
+
+
+
+
+
+
+  
 /*****PWA* */
 document.addEventListener('DOMContentLoaded', function() {
   const installButton = document.getElementById('installButton');
