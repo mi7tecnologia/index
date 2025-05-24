@@ -34,19 +34,19 @@ function menucelular(){
 let deferredPrompt;
 const installButton = document.getElementById('installButton');
 
-// Esconde o botão inicialmente
-installButton.style.display = 'none';
+// Esconde o botão inicialmente (garantido pelo CSS, pode tirar essa linha)
+// installButton.style.display = 'none';
 
 // Evento para mostrar o botão quando a instalação estiver disponível
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    installButton.style.display = 'block';
+    installButton.classList.add('show'); // mostrar com animação
 });
 
 // Evento para o clique do botão (adicionado só uma vez)
 installButton.addEventListener('click', async () => {
-    installButton.style.display = 'none';
+    installButton.classList.remove('show'); // esconder com animação
     if (!deferredPrompt) {
         return;
     }
