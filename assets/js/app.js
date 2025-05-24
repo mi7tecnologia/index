@@ -10,55 +10,23 @@ function menucelular(){
     }
 }*/
 
+/*****PWA* */
 document.addEventListener('DOMContentLoaded', function() {
-  // Modal
-  const modal = document.getElementById('modal');
-  const closeModal = document.getElementById('closeModal');
-  const botaoModal = document.getElementById('botaoModal');
   const installButton = document.getElementById('installButton');
-  const botaoFlutuante = document.getElementById('botaoFlutuante'); // ⬅️ Botão flutuante
+  const botaoFlutuante = document.getElementById('botaoFlutuante');
 
   let deferredPrompt = null;
 
-  // 👉 Função para abrir o modal
-  function abrirModal() {
-    modal.style.display = 'flex';
-    setTimeout(() => {
-      if (modal.style.display === 'flex') {
-        modal.style.display = 'none';
-      }
-    }, 5000);
-  }
-
-  // 👉 Checar se já mostrou nos últimos 3 dias
-  const ultimoModal = localStorage.getItem('ultimoModal');
-  const agora = new Date().getTime();
-  const tresDias = 3 * 24 * 60 * 60 * 1000;
-
-  if (!ultimoModal || agora - ultimoModal > tresDias) {
-    abrirModal();
-    localStorage.setItem('ultimoModal', agora);
-  }
-
-  // 👉 Fechar manual (X ou botão)
-  closeModal.onclick = () => {
-    modal.style.display = 'none';
-  };
-
-  botaoModal.onclick = () => {
-    modal.style.display = 'none';
-  };
-
-  // 👉 Evento do PWA
+  // 👉 Evento do PWA: quando é possível instalar
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
 
-    installButton.style.display = 'inline-block'; // Botão dentro do modal
-    botaoFlutuante.style.display = 'block';       // Botão flutuante
+    installButton.style.display = 'inline-block'; // Botão normal aparece
+    botaoFlutuante.style.display = 'block';       // Botão flutuante aparece
   });
 
-  // 👉 Clique no botão de instalar (modal ou flutuante)
+  // 👉 Função para instalar o app
   function instalarApp() {
     if (deferredPrompt) {
       deferredPrompt.prompt();
@@ -69,18 +37,20 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           console.log('❌ Usuário recusou instalar');
         }
+
         deferredPrompt = null;
+
         installButton.style.display = 'none';
         botaoFlutuante.style.display = 'none';
-        modal.style.display = 'none';
       });
     }
   }
 
+  // 👉 Clique nos botões de instalar
   installButton.addEventListener('click', instalarApp);
   botaoFlutuante.addEventListener('click', instalarApp);
 
-  // 👉 Menu hambúrguer (mantido igual)
+  // 👉 Menu hambúrguer (mantido normal)
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.querySelector('.menu');
 
@@ -91,21 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', () => {
     menu.classList.remove('menu-ativo');
   });
-});
-
-// 👉 Botão flutuante
-const botaoFlutuante = document.getElementById('botaoFlutuante');
-
-botaoFlutuante.addEventListener('click', () => {
-  // 🔥 Abre o modal novamente
-  modal.style.display = 'flex';
-
-  // Fecha sozinho após 5 segundos
-  setTimeout(() => {
-    if (modal.style.display === 'flex') {
-      modal.style.display = 'none';
-    }
-  }, 5000);
 });
 
 
