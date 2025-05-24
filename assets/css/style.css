@@ -977,7 +977,7 @@ hr {
 /*--- BTN FLUTUANTE ---*/
 
 #installButton {
-  display: none; /* começa oculto */
+  display: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -1000,4 +1000,3 @@ hr {
   opacity: 1;
   transform: translateY(0);
 }
-
