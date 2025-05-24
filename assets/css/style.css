@@ -970,3 +970,34 @@ hr {
         margin: 10px 5px;             /* Margens menores nas imagens dos apps para caber melhor */
     }
 }
+
+
+
+
+/*--- BTN FLUTUANTE ---*/
+
+#installButton {
+  display: none; /* começa oculto */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1000;
+}
+
+#installButton.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
