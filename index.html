@@ -15,7 +15,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <body>
-
+<button id="installButton" style="display: none;">📲 Instalar App</button>
 <!-- INICIO DO HEADER --> 
     <header class="topo">
 
@@ -330,6 +330,24 @@
 </footer>
 <!-- FIM RODAPÉ -->
 
+  <!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    
+    <!-- Ícone do app -->
+    <img src="assets/icons/icon-512.png" alt="App Icon">
+
+    <h2>Adicione o App</h2>
+    <p>Instale para acesso rápido e fácil.</p>
+
+    <!-- Botão de instalar -->
+    <button id="installButton" style="display: none;">📲 Instalar</button>
+
+    <!-- Botão de fechar -->
+    <button id="botaoModal">Fechar</button>
+  </div>
+</div>
 
 
 
@@ -356,32 +374,8 @@ Verde Água	#00BCD4	Destaques, botões, elementos tech
 Laranja	#FF5722	Chamadas para ação, alertas
 -->
 
-
-
-
-
-
-
-<div id="installModal" class="modal">
-  <div class="modal-content">
-    <span class="close-button">&times;</span>
-    <h2>Instale nosso app!</h2>
-    <p>Adicione nosso app na tela inicial para acessar mais rápido e com mais facilidade.</p>
-    <button id="installButton">Instalar App</button>
-  </div>
-</div>
-
-
-
-
-
-
+<script src="assets/js/app.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="assets/js/app.js"></script>
-
-
-
-
 </body>
 </html>
